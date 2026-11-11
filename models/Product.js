@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
   game: { type: mongoose.Schema.Types.ObjectId, ref: 'Game', required: true },
-  set: { type: mongoose.Schema.Types.ObjectId, ref: 'Set', required: true },
   productType: { type: String, required: true },
   language: { type: String, required: true },
   price: { type: Number, required: true },

@@ -6,7 +6,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const gameRoutes = require('./routes/gameRoutes');
-const setRoutes = require('./routes/setRoutes');
 const productRoutes = require('./routes/productRoutes');
 const { seedData } = require('./controllers/seedController');
 
@@ -25,7 +24,6 @@ app.post('/api/login', (req, res) => {
 });
 
 app.use('/api/games', gameRoutes);
-app.use('/api/sets', setRoutes);
 app.use('/api/products', productRoutes);
 
 const PORT = process.env.PORT || 5000;
@@ -33,7 +31,7 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB Connected');
-    seedData(); // <-- Auto-seeds games and sets
+    seedData(); // seeds games only (no sets)
     app.listen(PORT, () => console.log(`🚀 TCG Vault Server on port ${PORT}`));
   })
   .catch((err) => console.error('❌ MongoDB error:', err));
